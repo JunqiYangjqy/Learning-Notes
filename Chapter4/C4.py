@@ -159,6 +159,24 @@ plt.show()
 
 #Page111
 
+#Random Walk
+import random
+pos=0
+walk=[pos]
+steps=1000
+
+for i in range(steps):
+    if random.randint(0,1)==1:
+        step=1
+    else:
+        step=-1
+    pos += step
+    walk.append(pos)
+
+plt.plot(walk[:100])
+plt.show()
+
+
 
 
 
