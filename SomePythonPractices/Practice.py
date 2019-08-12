@@ -61,26 +61,31 @@ class Solution:
                     print("No such number")
                     return False
                 
+    #4. Print linked list from tail to head
+    def printListFromTailToHead(self, listNode):
+        # write code here
+        answer = []    
+        head = listNode
+        while head:
+            answer.append( head.val)
+            head = head.next
+        #or maybe use answer.reverse()
+        return answer[::-1]
+    
+    #5. Give the preorder traversal and the in-order traversal of a binary tree
+    #   please reconstruct the binary tree
+    #   Recursive process
+    #   前序第一个为root，通过中序遍历找到左右子树，然后递归
+    def reConstructBinaryTree(self, pre, tin):
+        # write code here
+        if len(pre) == 0:
+            return None
+        root = TreeNode(pre[0])
+        pos = tin.index(pre[0])
+        root.left = self.reConstructBinaryTree( pre[1:1+pos], tin[:pos])
+        root.right = self.reConstructBinaryTree( pre[pos+1:], tin[pos+1:])
+        return root
             
-
-"""
-        int rows=array.length;
-        int cols=array[0].length;
-        int row = 0;
-        int col = cols-1;
-        while(row<=rows-1 && col>=0){
-                if(array[row][col]==target)
-                {
-                    return true;                    
-                }else if(array[row][col]<target){
-                    row = row + 1;
-                }else{
-                    col = col - 1;
-                }
-        }                
-        return false;
-"""
-        
     
     
     
