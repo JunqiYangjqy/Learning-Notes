@@ -85,7 +85,32 @@ class Solution:
         root.left = self.reConstructBinaryTree( pre[1:1+pos], tin[:pos])
         root.right = self.reConstructBinaryTree( pre[pos+1:], tin[pos+1:])
         return root
-            
+    
+    #6. Fibonacci
+    def recur_fibo(n):
+        if n <= 1:
+            return n
+        else:
+            return(recur_fibo(n-1) + recur_fibo(n-2))  
+    #or
+    def Fibonacci(self, n):
+        # write code here
+        a, b = 0, 1
+        for _ in range(n):
+            a, b = b, a+b
+        return a
+    #or
+    def newFibonacci(self, n):
+        # write code here
+        self.n=n
+        value=[0,1]
+        if n>0 and n<=1:
+            return n
+        elif n<=39:
+            for i in range(2,n+1):
+                value.append(value[i-1]+value[i-2])
+            #value= Fibonacci(n-1)+Fibonacci(n-2)
+            return value[n]
     
     
     
