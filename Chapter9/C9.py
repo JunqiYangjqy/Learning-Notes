@@ -82,7 +82,23 @@ for date,label in crisis_data:
                 horizontalalignment='left',verticalalignment='top')
     
 #enlarge 2007 - 2010
-ax.set_xlim(['1/1/2007',''1/1/2011])
+ax.set_xlim(['1/1/2007','1/1/2011'])
 ax.set_ylim([600,1800])
 ax.set_title('Important dates in 2008-2009')
+
+#Save pics, simply use plt.savefig()
+plt.savefig('figpath.jpg')
+#Some parametres: dpi & bbox_inches(prune the space)
+plt.savefig('figpath.png',dpi=400,bbox_inches='tight')
+
+#savefig can write not only to harddrive, e.g.
+from io import BytesIO
+buffer=BytesIO()
+plt.savefig(buffer)
+plot_data=buffer.getvalue()
+
+
+
+
+
 
