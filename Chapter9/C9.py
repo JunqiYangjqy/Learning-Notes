@@ -97,8 +97,28 @@ buffer=BytesIO()
 plt.savefig(buffer)
 plot_data=buffer.getvalue()
 
+#the rc function
+#use rc to modify the default actions. e.g.
+plt.rc('figure',figsize=(10,10))
+#change the default size to 10x10
+#another example
+font_settings = {'family':'monospace',
+                 'weight':'bold',
+                 'size':'small'}
+plt.rc('font',**font_settings)
 
+"""
+Seaborn, another visualisation library
+"""
 
+#Line Graph
+#Series and Dataframe both have 'plot' attribute. By default, it's line graph
+s = pd.Series(np.random.randn(10).cumsum(),index=np.arange(0,100,10))
+s.plot()
+#the index in this series becomes the x-axis in this picture, while set use_index=False will ban this
+
+df=pd.DataFrame(np.random.randn(10,4).cumsum(0),
+                columns=[])
 
 
 
