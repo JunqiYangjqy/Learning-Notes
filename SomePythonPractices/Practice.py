@@ -112,7 +112,43 @@ class Solution:
             #value= Fibonacci(n-1)+Fibonacci(n-2)
             return value[n]
     
-    
+    # LeetCode Two Sum
+    #my stupid version
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n=len(nums)
+        answer=[]
+        for i in range(n):
+            a=nums
+            for j in range(n):
+                if nums[i]+a[j]==target and i!=j:
+                    if i<j:
+                        answer=[i,j]
+                    else:
+                        answer=[j,i]
+        return answer
+    #Use hashmap (dict in python)
+    #求差值、把差值存进字典里作为键、索引作为值，第一次循环理解：d[7]=0 即字典d={7:0}，
+    #表示为索引0需要数组里值为7的元素配对。 if 判断是否为前面元素所需要配对的值 ， 
+    #是则返回两个索引值。（补充：nums[x] in d  是判断值是否在字典某个key里面）
+    class Solution:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """           
+        n = len(nums)
+        #创建一个空字典
+        d = {}
+        for x in range(n):
+            a = target - nums[x]
+            #字典d中存在nums[x]时
+            if nums[x] in d:
+                return d[nums[x]],x
+            #否则往字典增加键/值对
+            else:
+                d[a] = x
+        #边往字典增加键/值对，边与nums[x]进行对比
     
     
                     
