@@ -150,6 +150,31 @@ class Solution:
                 d[a] = x
         #边往字典增加键/值对，边与nums[x]进行对比
     
+    #Leet Code: reverse integer
+    #my stupid answer used 60ms and 14mb 
+    def reverse(self, x: int) -> int:
+        self.x=x
+        if -10<x<10:
+            return x
+        if x>=10:
+            strx=str(x)
+            strx=strx[::-1]
+            x=int(strx)
+        else:
+            strx=str(x)
+            strx=strx[1:][::-1]
+            x=int(strx)
+            x=-x
+        return x if -2**31 < x < 2**31 - 1 else 0
+    
+    #Leet Code: Palindrome Number
+    #Simple one
+    def isPalindrome(self, x: int) -> bool:
+        strx=str(x)
+        if strx[::]==strx[::-1]:
+            return True
+        else:
+            return False
     
                     
                     
