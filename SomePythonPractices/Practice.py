@@ -175,6 +175,144 @@ class Solution:
             return True
         else:
             return False
+    #Or utilise mathematical ways
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        # 负数和10，90，100等不是回文数
+        if x < 0 or (x!=0 and x%10==0):
+            return False
+        # 0 is palindrome number；
+        elif x == 0:
+            return True
+        # 其他情况， 分别计算出back和x的值， 判断。
+        back = 0
+        while x > back:
+            back = back*10 + x%10
+            x = x/10
+        # 124421： x==back
+        # 121: x==back/10
+        return x==back or x==back/10
+    
+    #LeetCode: Roman to Integer
+    #Quite hard
+    #Others
+    def romanToint(s):
+        roman_dict = {'M':1000,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1}
+        sum = 0
+        for i in range(len(s)-1):
+            if roman_dict[s[i]]<roman_dict[s[i+1]]:
+                sum -= roman_dict[s[i]]
+            else:
+                sum += roman_dict[s[i]]
+        return sum+roman_dict[s[-1]]
+    #Integer to Roman
+    def intToroman(num):
+        num_list = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+        roman_list = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X','IX','V','IV','I']
+        res = ""
+        for i in range(len(num_list)):
+                while num>=num_list[i]:
+                        num-=num_list[i]
+                        res+=roman_list[i]
+        return res
+    
+    #LeetCode: Longest Common Prefix
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        import os
+        return os.path.commonprefix(strs)
+    #Really Nice One
+    #Utilising zip() function & the feature of Set
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        res = ""
+        if len(strs) == 0:
+            return ""
+        for each in zip(*strs):
+            if len(set(each)) == 1:
+                res += each[0]
+            else:
+                return res
+        return res
+    
+    #LeetCode: Valid Parentheses
+    #my stupid answer
+    #my answer is wrong when the input is like '{[]}'
+    def isValid(self, s: str) -> bool:
+        if s=='':
+            return True
+        d={'(':'()','[':'[]','{':'[]'}
+        n=len(s)
+        if n<=1:
+            return False
+        for i in range(0,n,2):
+            if s[i] not in d:
+                return False
+            if (s[i]+s[i+1]) == d[s[i]]:
+                return True
+            else:
+                return False
+            
+    #The official answer, so amazing
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+
+        # The stack to keep track of opening brackets.
+        stack = []
+
+        # Hash map for keeping track of mappings. This keeps the code very clean.
+        # Also makes adding more types of parenthesis easier
+        mapping = {")": "(", "}": "{", "]": "["}
+
+        # For every bracket in the expression.
+        for char in s:
+
+            # If the character is an closing bracket
+            if char in mapping:
+
+                # Pop the topmost element from the stack, if it is non empty
+                # Otherwise assign a dummy value of '#' to the top_element variable
+                top_element = stack.pop() if stack else '#'
+
+                # The mapping for the opening bracket in our hash and the top
+                # element of the stack don't match, return False
+                if mapping[char] != top_element:
+                    return False
+            else:
+                # We have an opening bracket, simply push it onto the stack.
+                stack.append(char)
+
+        # In the end, if the stack is empty, then we have a valid expression.
+        # The stack won't be empty for cases like ((()
+        return not stack
+    
+    #LeetCode: Length of last word
+    #my stupid answer
+    def lengthOfLastWord(self, s: str) -> int:
+        if len(s)==0 or s==" ":
+            return 0
+        ss=s.split( )
+        if ss==[]:
+            return 0
+        n=len(str(ss[-1]))
+        return n
+    #Others
+    def lengthOfLastWord(self, s: str) -> int:
+        return len(s.rstrip().split(" ")[-1])
+
+
     
                     
                     
