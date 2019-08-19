@@ -312,6 +312,40 @@ class Solution:
     def lengthOfLastWord(self, s: str) -> int:
         return len(s.rstrip().split(" ")[-1])
 
+    #Swap the linked list
+    class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+    
+    # @param a ListNode
+    # @return a ListNode
+    def swapPairs(self, head):
+        if head != None and head.next != None:
+            next = head.next
+            head.next = self.swapPairs(next.next)
+            next.next = head
+            return next
+        return head
+    
+    #LeetCode: Plus One
+    #Quite nice
+        def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        flag = 1
+        for i in range(len(digits)-1, -1, -1):
+            if flag == 1:
+                digits[i] += 1
+                if digits[i] >= 10:
+                    digits[i] = 0
+                else:
+                    flag = 0
+        if flag == 1:
+            digits.insert(0,1)
+        return digits
 
     
                     
