@@ -379,7 +379,18 @@ class Solution:
         return n - len([nums.pop(i) for i in range(n -1, 0, -1) if nums[i] == nums[i - 1]])
     """
     
-    #
+    #LeetCode: Remove Element
+    def removeElement(self, nums: List[int], val: int) -> int:
+        n=len(nums)
+        if n==0:
+            return 0
+        while n:
+            if nums[n-1] == val:
+                del nums[n-1]
+                n -=1
+            else:
+                n-=1
+        return len(nums)
 
 
     
