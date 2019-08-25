@@ -391,8 +391,112 @@ class Solution:
             else:
                 n-=1
         return len(nums)
+    
+    #LeetCode: implement strStr()
+    def strStr(self, haystack: str, needle: str) -> int:
+        if len(needle)==0:
+            return 0
+        a=haystack.find(needle)
+        return a
+    
+    """
+    #In JAVA, we can use substring() function to match 
+    #Example Java answer
+        public int strStr(String haystack, String needle) {
+        int res = -1;
+        int len = needle.length();
+        int lenhay = haystack.length();
+        if ( lenhay < len )
+            return -1;
+        int star = 0 ;
+        int end = len-1;
+        while (end < lenhay){
+             if (haystack.substring(star,end+1).equals(needle)){
+                 return star;
+             }
+            end++;
+            star++;
+        }
+        return -1;
+    }
+    Author：knightdax
+    URL：https://leetcode-cn.com/problems/implement-strstr/solution/java-zi-fu-chuan-pi-pei-bi-jiao-jian-dan-de-fang-f/
+    Source：LeetCode
+    """
+    
+    #LeetCode: Search Insert Position
+    #Seems my answer is really long
+    #I used the bi-search as this is a sorted list. It costed 68ms and 14.8mb
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        if len(nums)==0:
+            return -1
+        if target in nums:
+            return nums.index(target)
+        else:
+            n=len(nums)
+            if nums[n-1]<target:
+                return n
+            elif nums[0]>target:
+                return 0
+            else:
+                low = 0
+                high = n-1
+                insert_index=0
+                if n>2:
+                    while low < high-1:
+                        mid = (low + high)//2
 
-
+                        if nums[mid] == target:
+                            insert_index == mid+1
+                        elif nums[mid] > target:
+                            high = mid
+                            insert_index = high             
+                        else:
+                            low = mid
+                            insert_index = low+1
+                else:
+                    if nums[0]>target:
+                        insert_index=0
+                    elif nums[1]<target:
+                        insert_index=2
+                    else:
+                        insert_index=1
+                return insert_index
+            
+    #A Java template for bi-search
+    """       
+            --------------------------------
+    public int searchInsert(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while(left <= right) {
+            int mid = (left + right) / 2;
+            if(nums[mid] == target) {
+                return mid;
+            } else if(nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+            --------------------------------
+    public int searchInsert(int[] nums, int target) {
+        int left = 0, right = nums.length - 1; // 注意
+        while(left <= right) { // 注意
+            int mid = (left + right) / 2; // 注意
+            if(nums[mid] == target) { // 注意
+                // 相关逻辑
+            } else if(nums[mid] < target) {
+                left = mid + 1; // 注意
+            } else {
+                right = mid - 1; // 注意
+            }
+        }
+        // 相关返回值
+        return 0;
+    }
+    """
     
                     
                     
