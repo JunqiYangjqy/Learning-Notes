@@ -356,6 +356,31 @@ class Solution:
         for i in range(2,n):
             dp.append(dp[i-1]+dp[i-2])
         return dp[n-1]
+    
+    #LeetCode: Remove Duplicates from Sorted Array
+    #删除排序数组中的重复项
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        k = 1
+        n = len(nums)
+        while k < n:
+            if nums[k] == nums[k - 1]:
+                del nums[k]
+                n -= 1
+            else:
+                k += 1
+        return n
+    """
+    Or 
+    n = len(nums)
+        return n - len([nums.pop(i) for i in range(n -1, 0, -1) if nums[i] == nums[i - 1]])
+    """
+    
+    #
+
 
     
                     
