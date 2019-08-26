@@ -543,5 +543,66 @@ class Solution:
                 tmp = nums[i]
         return maxvalue
     
+    #LeetCode: Merge Sorted Arrat
+    #Java: arraycopy(); Python: sorted()
+    def merge(self, nums1, m, nums2, n):
+        """
+        :type nums1: List[int]
+        :type m: int
+        :type nums2: List[int]
+        :type n: int
+        :rtype: void Do not return anything, modify nums1 in-place instead.
+        """
+        nums1[:] = sorted(nums1[:m] + nums2)
+    
+    """
+    Java:
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+            System.arraycopy(nums2, 0, nums1, m, n);
+            Arrays.sort(nums1);
+            }
+    
+    Java 2:
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int len1 = m - 1;
+        int len2 = n - 1;
+        int len = m + n - 1;
+        while(len1 >= 0 && len2 >= 0) {
+            // 注意--符号在后面，表示先进行计算再减1，这种缩写缩短了代码
+            nums1[len--] = nums1[len1] > nums2[len2] ? nums1[len1--] : nums2[len2--];
+        }
+        // 表示将nums2数组从下标0位置开始，拷贝到nums1数组中，从下标0位置开始，长度为len2+1
+        System.arraycopy(nums2, 0, nums1, 0, len2 + 1);
+    }
+
+Author：guanpengchn
+URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-fa-88-he-bing-liang-ge-you-xu-shu-zu-/
+    """
+    #Double Pointers Solution
+    def mergeArray(self, nums1, m, nums2, n):
+        # Make a copy of nums1.
+        nums1_copy = nums1[:m] 
+        nums1[:] = []
+        # Two get pointers for nums1_copy and nums2.
+        p1 = 0 
+        p2 = 0
+        
+        # Compare elements from nums1_copy and nums2
+        # and add the smallest one into nums1.
+        while p1 < m and p2 < n: 
+            if nums1_copy[p1] < nums2[p2]: 
+                nums1.append(nums1_copy[p1])
+                p1 += 1
+            else:
+                nums1.append(nums2[p2])
+                p2 += 1
+
+        # if there are still elements to add
+        if p1 < m: 
+            nums1[p1 + p2:] = nums1_copy[p1:]
+        if p2 < n:
+            nums1[p1 + p2:] = nums2[p2:]
+
+    
                     
                     
