@@ -498,5 +498,50 @@ class Solution:
     }
     """
     
+    #LeetCode: Count and Say
+    #Be honest, I don't like this question
+    #Official Answer
+    """
+    具体思路
+    先设置上一人为'1'
+    开始外循环
+    每次外循环先置下一人为空字符串，置待处理的字符num为上一人的第一位，置记录出现的次数为1
+    开始内循环，遍历上一人的数，如果数是和num一致，则count增加。
+    若不一致，则将count和num一同添加到next_person报的数中，同时更新num和count
+    别忘了更新next_person的最后两个数为上一个人最后一个字符以及其出现次数！
+    """
+    def countAndSay(self, n: int) -> str:
+        prev_person = '1'
+        for i in range(1,n):
+            next_person, num, count = '', prev_person[0], 1
+            for j in range(1,len(prev_person)):
+                if prev_person[j] == num:
+                    count += 1
+                else:
+                    next_person += str(count) + num
+                    num = prev_person[j]
+                    count = 1
+            next_person += str(count) + num
+            prev_person = next_person
+        return prev_person
+
+    #LeetCode: Maximum Subarray
+    #Just Brute it
+    def maxSubArray(self, nums: List[int]) -> int:
+        tmp = nums[0]
+        maxvalue = tmp
+        n = len(nums)
+        for i in range(1,n):
+            # 当当前序列加上此时的元素的值大于tmp的值，说明最大序列和可能出现在后续序列中，记录此时的最大值
+            if tmp + nums[i]>nums[i]:
+                maxvalue = max(maxvalue, tmp+nums[i])
+                tmp = tmp + nums[i]
+            else:
+            #当tmp(当前和)小于下一个元素时，当前最长序列到此为止。以该元素为起点继续找最大子序列,
+            # 并记录此时的最大值
+                maxvalue = max(maxvalue, tmp, tmp+nums[i], nums[i])
+                tmp = nums[i]
+        return maxvalue
+    
                     
                     
