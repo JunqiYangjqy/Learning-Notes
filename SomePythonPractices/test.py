@@ -9,7 +9,7 @@ import exifread #Read exif from pic
 from datetime import datetime
 import requests
 
-gmaps = googlemaps.Client(key='AIzaSyBRq0w3qyc6EECnVo17c1spGzuXgn7-5pY')
+gmaps = googlemaps.Client(key='')
 
 class getLocation(object):
     
