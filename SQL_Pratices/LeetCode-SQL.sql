@@ -66,5 +66,27 @@ SELECT t.Num ,
        @pre:=t.Num pre
   FROM Logs t, (SELECT @pre:=null, @cnt:=0) b) a
   WHERE a.cnt >= 3
-#Author:hy3300
-#URL:https://leetcode-cn.com/problems/consecutive-numbers/solution/bu-shi-yong-idqing-kuang-xia-tong-ji-by-hy3300/
+--Author:hy3300
+--URL:https://leetcode-cn.com/problems/consecutive-numbers/solution/bu-shi-yong-idqing-kuang-xia-tong-ji-by-hy3300/
+--------------------------------------------------------------------------------
+#Duplicate Emails
+# Write your MySQL query statement below
+SELECT P.Email
+FROM Person P
+GROUP BY P.Email
+HAVING COUNT(P.Email)>=2
+--------------------------------------------------------------------------------
+#Customers Who Never Order
+# Write your MySQL query statement below
+SELECT c.Name AS 'Customers' FROM
+Customers c
+WHERE c.Id NOT IN (
+    SELECT o.CustomerId
+    FROM Orders o
+)
+--Also, we can use Left JOIN
+SELECT c.Name AS 'Customers'
+FROM Customers c LEFT JOIN Orders o
+ON c.Id = o.CustomerId
+WHERE o.Id IS NULL
+--------------------------------------------------------------------------------
