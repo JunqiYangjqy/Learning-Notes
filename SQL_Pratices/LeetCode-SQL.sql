@@ -90,3 +90,31 @@ FROM Customers c LEFT JOIN Orders o
 ON c.Id = o.CustomerId
 WHERE o.Id IS NULL
 --------------------------------------------------------------------------------
+#Department Highest Salary
+# Write your MySQL query statement below
+SELECT d.Name AS 'Department', e1.Name AS 'Employee', c.msalary AS Salary
+FROM Employee e1, Department d, (SELECT DepartmentId,MAX(Salary) as msalary FROM Employee GROUP BY DepartmentId ) AS c
+WHERE c.DepartmentId=d.Id
+AND e1.DepartmentId=d.Id
+AND e1.Salary=c.msalary
+
+#Official Answer
+SELECT
+    Department.name AS 'Department',
+    Employee.name AS 'Employee',
+    Salary
+FROM
+    Employee
+        JOIN
+    Department ON Employee.DepartmentId = Department.Id
+WHERE
+    (Employee.DepartmentId , Salary) IN
+    (   SELECT
+            DepartmentId, MAX(Salary)
+        FROM
+            Employee
+        GROUP BY DepartmentId
+	)
+#Author：LeetCode
+#URL：https://leetcode-cn.com/problems/department-highest-salary/solution/bu-men-gong-zi-zui-gao-de-yuan-gong-by-leetcode/
+--------------------------------------------------------------------------------
