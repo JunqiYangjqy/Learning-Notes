@@ -105,7 +105,7 @@ SELECT
     Salary
 FROM
     Employee
-        JOIN
+    JOIN
     Department ON Employee.DepartmentId = Department.Id
 WHERE
     (Employee.DepartmentId , Salary) IN
@@ -216,3 +216,29 @@ WHERE
         )
 -- Author: LeetCode
 -- URL: https://leetcode-cn.com/problems/department-top-three-salaries/solution/bu-men-gong-zi-qian-san-gao-de-yuan-gong-by-leetco/
+
+-- OR
+SELECT D.Name AS `Department`,E.Name AS `Employee`,E.Salary
+FROM Employee AS E join Department AS D ON (E.Departmentid = D.Id)
+WHERE (
+    SELECT COUNT(DISTINCT E1.Salary)
+    FROM Employee AS E1
+    WHERE E1.Departmentid = E.Departmentid AND E1.Salary > E.Salary
+) <=2
+
+--------------------------------------------------------------------------------
+-- SWAP Salary
+UPDATE salary
+SET sex= (CASE sex   -- we can use CASE WHEN when using UPDATE
+         WHEN 'f' THEN 'm'
+         ELSE 'f'
+         END)  
+
+-- OR using IF()
+UPDATE salary SET sex=IF(sex = 'f', 'm','f');
+-- OR unbelivable ASCII and XOR 
+UPDATE salary SET sex = CHAR(ascii('m') + ascii('f') - ascii(sex));
+UPDATE salary SET sex = CHAR(ASCII(sex) ^ ASCII('m') ^ ASCII('f') ); --same value XOR itself = 0
+
+--------------------------------------------------------------------------------
+
