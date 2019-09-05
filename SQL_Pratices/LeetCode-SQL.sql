@@ -39,8 +39,10 @@ END
 -- Write your MySQL query statement below
 --This rank is continously
 SELECT Score,
-(SELECT COUNT(DISTINCT Score) FROM Scores WHERE Score >=s.Score) Rank
-FROM Scores s ORDER BY Score DESC;
+(SELECT COUNT(DISTINCT Score) 
+ FROM Scores WHERE Score >=s.Score) Rank
+FROM Scores s 
+ORDER BY Score DESC;
 
 --Another Answer
 SELECT
@@ -53,9 +55,9 @@ ORDER BY a.Score DESC
 
 --If we want an uncontinously Rank
 SELECT t.score,(SELECT COUNT(s.score)+1
-FROM scores s
-WHERE s.score>t.score) rank
-FROM scores t
+                FROM scores s
+                WHERE s.score>t.score) rank
+FROM scores t 
 ORDER BY t.score DESC;
 --------------------------------------------------------------------------------
 --ConsecutiveNumber

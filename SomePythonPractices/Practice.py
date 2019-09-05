@@ -130,7 +130,6 @@ class Solution:
     #求差值、把差值存进字典里作为键、索引作为值，第一次循环理解：d[7]=0 即字典d={7:0}，
     #表示为索引0需要数组里值为7的元素配对。 if 判断是否为前面元素所需要配对的值 ， 
     #是则返回两个索引值。（补充：nums[x] in d  是判断值是否在字典某个key里面）
-    class Solution:
     def twoSum(self, nums, target):
         """
         :type nums: List[int]
@@ -603,6 +602,39 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
         if p2 < n:
             nums1[p1 + p2:] = nums2[p2:]
 
+    #LeetCode: Sqrt(x)
+    #Great answer
+    def mySqrt(self, x: int) -> int:
+        # 为了照顾到 0 把左边界设置为 0
+        left = 0
+        # 为了照顾到 1 把右边界设置为 x // 2 + 1
+        right = x // 2 + 1
+        while left < right:
+            # 注意：这里一定取右中位数，如果取左中位数，代码可能会进入死循环
+            # mid = left + (right - left + 1) // 2
+            mid = (left + right + 1) >> 1
+            square = mid * mid
 
+            if square > x:
+                right = mid - 1
+            else:
+                left = mid
+        # 因为一定存在，因此无需后处理
+        return left
+#Author: liweiwei1419
+#URL: https://leetcode-cn.com/problems/sqrtx/solution/er-fen-cha-zhao-niu-dun-fa-python-dai-ma-by-liweiw/
+
+    #LeetCode: The Same Tree
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        # p q are both None
+        if not p and not q:
+            return True
+        # one of p and q is None
+        if not q or not p:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.right, q.right) and \
+               self.isSameTree(p.left, q.left)
                     
                     
