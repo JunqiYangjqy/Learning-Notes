@@ -637,4 +637,45 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
         return self.isSameTree(p.right, q.right) and \
                self.isSameTree(p.left, q.left)
                     
-                    
+    #LeetCode: Symmetric Tree
+    #I don't know what's wrong with my answer
+    def isSymmetric(self, root: TreeNode) -> bool:       
+        def iS(p,q):           
+            if not p and not q:
+                return True
+            if not p or not q:
+                return False
+            if (p and q) and p.val==q.val:
+                ln=iS(p.left,q.right)
+                rn=iS(q.right,p.left)
+                return ln and rn
+            return False       
+        if not root:
+            return True      
+        return iS(root.left,root.right)
+    #Other answer - this runs correctly
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        return self.recursiveTree(root.left, root.right)
+    def recursiveTree(self, left, right):
+        if not left and not right:
+            return True
+        if not left or not right:
+            return False
+        if left.val == right.val:
+            return self.recursiveTree(left.left, right.right) and self.recursiveTree(left.right, right.left)
+        return False
+    #Official Answer - Java
+    public boolean isSymmetric(TreeNode root) {
+        return isMirror(root, root);
+    }
+    public boolean isMirror(TreeNode t1, TreeNode t2) {
+        if (t1 == null && t2 == null) return true;
+        if (t1 == null || t2 == null) return false;
+        return (t1.val == t2.val)
+            && isMirror(t1.right, t2.left)
+            && isMirror(t1.left, t2.right);
+    }
+# Author:LeetCode
+# RUL:https://leetcode-cn.com/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode/
