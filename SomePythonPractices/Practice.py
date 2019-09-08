@@ -148,6 +148,16 @@ class Solution:
             else:
                 d[a] = x
         #边往字典增加键/值对，边与nums[x]进行对比
+    #New Answer
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap={}
+        for ind,num in enumerate(nums):
+            hashmap[num] = ind
+        for i,num in enumerate(nums):
+            j = hashmap.get(target - num)
+            if j is not None and i!=j:
+                return [i,j]
+
     
     #Leet Code: reverse integer
     #my stupid answer used 60ms and 14mb 
@@ -679,3 +689,49 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
     }
 # Author:LeetCode
 # RUL:https://leetcode-cn.com/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode/
+
+    #LeetCode: Add Two Numbers
+        def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        tmpl1=[]
+        while l1:
+            #print (l1.val)
+            tmpl1.append(l1.val)
+            l1 = l1.next
+        
+        tmpl2=[]
+        while l2:
+            tmpl2.append(l2.val)
+            l2=l2.next
+        """ 
+        ansl = list(map(lambda x: x[0]+x[1], zip(tmpl2, tmpl1)))
+        anss=""
+        for j in range(len(anss)-1,-1,-1):
+            anss=anss+str(anss[j])
+        """ 
+        s1=''
+        for i in range(len(tmpl1)-1,-1,-1):
+            s1=s1+str(tmpl1[i])
+        s2=''
+        for j in range(len(tmpl2)-1,-1,-1):
+            s2=s2+str(tmpl2[j])
+        
+        #字符串转成整数
+        m1=int(s1)
+        m2=int(s2)
+        #整数之和转成字符串
+        m3=str(m1+m2)
+        
+        #新建两个空链表
+        tmp_node=ListNode(None)
+        node=ListNode(None) 
+        #从后往前遍历和字符串，插入链表
+        for x in m3[::-1]:
+            #print(x)
+            if not tmp_node.val:
+                tmp_node.val=x
+                node=tmp_node
+                #print(node)
+            else:
+                tmp_node.next=ListNode(x)
+                tmp_node=tmp_node.next                     
+        return node
