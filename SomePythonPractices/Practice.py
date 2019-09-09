@@ -255,21 +255,17 @@ class Solution:
     
     #LeetCode: Valid Parentheses
     #my stupid answer
-    #my answer is wrong when the input is like '{[]}'
     def isValid(self, s: str) -> bool:
-        if s=='':
-            return True
-        d={'(':'()','[':'[]','{':'[]'}
-        n=len(s)
-        if n<=1:
-            return False
-        for i in range(0,n,2):
-            if s[i] not in d:
-                return False
-            if (s[i]+s[i+1]) == d[s[i]]:
-                return True
+        if len(s)%2 == 1: return False
+        hashmap={'{': '}',  '[': ']', '(': ')', '#': '#'}
+        stack=['#']
+        for i in s:
+            if i in hashmap:
+                stack.append(i)
             else:
-                return False
+                if hashmap[stack.pop()] != i:
+                    return False    
+        return len(stack)==1
             
     #The official answer, so amazing
     def isValid(self, s):
@@ -346,8 +342,6 @@ class Solution {
     return stack.isEmpty();
   }
 }
-
-
 
 ##########################################################################################
     #LeetCode: Length of last word
