@@ -772,3 +772,11 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
                 tmp_node.next=ListNode(x)
                 tmp_node=tmp_node.next                     
         return node
+
+    #LeetCode: Valid Palindrome
+    #I used the re
+    def isPalindrome(self, s: str) -> bool:
+        #text=s.lower()
+        temp=re.findall(r'[a-z0-9]',text,re.I)
+        sss="".join(temp).lower()
+        return sss[::]==sss[::-1]
