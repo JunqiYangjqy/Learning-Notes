@@ -780,3 +780,16 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
         temp=re.findall(r'[a-z0-9]',text,re.I)
         sss="".join(temp).lower()
         return sss[::]==sss[::-1]
+
+    #LeetCode: Longest Common Prefix
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+        #Find the shortest string in the List
+        shortest = min(strs, key=len)
+        #enumerate it
+        for i_th, letter in enumerate(shortest):
+            for other in strs:
+                if other[i_th] != letter:
+                    return shortest[:i_th]
+        return shortest
