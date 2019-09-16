@@ -793,3 +793,47 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
                 if other[i_th] != letter:
                     return shortest[:i_th]
         return shortest
+
+    #LeetCode: Max Subarray Sum
+    def maxSubArray(self, nums: List[int]) -> int:
+        tmp = nums[0]
+        maxvalue = tmp
+        n = len(nums)
+        for i in range(1,n):
+            # 当当前序列加上此时的元素的值大于tmp的值，说明最大序列和可能出现在后续序列中，记录此时的最大值
+            if tmp + nums[i]>nums[i]:
+                maxvalue = max(maxvalue, tmp+nums[i])
+                tmp = tmp + nums[i]
+            else:
+            #当tmp(当前和)小于下一个元素时，当前最长序列到此为止。以该元素为起点继续找最大子序列,
+            # 并记录此时的最大值
+                maxvalue = max(maxvalue, tmp, tmp+nums[i], nums[i])
+                tmp = nums[i]
+        return maxvalue
+    #Java Answer
+    class Solution {
+    public int maxSubArray(int[] nums) {
+        int ans = nums[0];
+        int sum = 0;
+        for(int num: nums) {  //#Java's traversal
+            if(sum > 0) {
+                sum += num;
+            } else {
+                sum = num;
+            }
+            ans = Math.max(ans, sum);
+        }
+        return ans;
+        }
+    }
+    def maxSubArrayAnother(nums: List[int])->int:
+        answer=nums[0]
+        sumcount=0
+        for i in nums:
+            if sumcount>0:
+                sumcount += i
+            else:
+                sumcount = i
+            ans = max(sumcount,ans)
+        return ans
+
