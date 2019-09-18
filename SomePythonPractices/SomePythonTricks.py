@@ -36,4 +36,21 @@ class Tricks:
         )
     chunk([1,2,3,4,5],2)
     # Output resembles: [[1,2],[3,4],5]
-    
+
+# 7. Using zip() to transpose an array
+    array = [[ a ,  b ], [ c ,  d ], [ e ,  f ]]    
+    transposed = zip(*array)    
+    print(transposed) # [( a ,  c ,  e ), ( b ,  d ,  f )]
+
+# 8. re   
+    import re    
+    def count_vowels(str):    
+        return len(len(re.findall(r [aeiou] , str, re.IGNORECASE)))    
+    count_vowels( foobar ) # 3    
+    count_vowels( gym ) # 0
+
+# 9. Lower the first character
+    def decapitalize(string):    
+        return str[:1].lower() + str[1:]    
+    decapitalize( FooBar ) #  fooBar     
+    decapitalize( FooBar ) #  fooBar
