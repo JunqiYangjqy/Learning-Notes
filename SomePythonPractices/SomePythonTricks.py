@@ -54,3 +54,19 @@ class Tricks:
         return str[:1].lower() + str[1:]    
     decapitalize( FooBar ) #  fooBar     
     decapitalize( FooBar ) #  fooBar
+
+# 10. Unfold a list recursively
+    def spread(arg):
+        ret = []
+        for i in arg:
+            if isinstance(i, list):
+                ret.extend(i)
+            else:
+                ret.append(i)
+        return ret
+    def deep_flatten(lst):
+        result = []
+        result.extend(
+            spread(list(map(lambda x: deep_flatten(x) if type(x) == list else x, lst))))
+        return result
+    deep_flatten([1, [2], [[3], 4], 5]) # [1,2,3,4,5]
