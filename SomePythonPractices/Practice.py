@@ -837,3 +837,11 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
             ans = max(sumcount,ans)
         return ans
 
+    # CodeWar
+    # 'return a new list with the strings filtered out'
+    def filter_list(l):
+        ln=[]
+        for i,s in enumerate(l):
+            if isinstance(s,int)==True:
+                ln.append(s)
+        return ln
