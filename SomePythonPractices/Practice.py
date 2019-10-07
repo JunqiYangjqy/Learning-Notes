@@ -845,3 +845,14 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
             if isinstance(s,int)==True:
                 ln.append(s)
         return ln
+
+    # CodeWar
+    # Printer Error
+    def printer_error(s):
+        import re
+        return str(len(re.findall('[n-z]', s))) + "/" + str(len(s))
+    # Or
+    def printer_error(s):
+        # ord() returns ASCII value of one character
+        s1 = len([ x for x in s if ord(x) > ord('m')])
+        return str(s1) +'/' + str(len(s))
