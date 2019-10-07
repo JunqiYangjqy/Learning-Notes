@@ -855,4 +855,13 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
     def printer_error(s):
         # ord() returns ASCII value of one character
         s1 = len([ x for x in s if ord(x) > ord('m')])
-        return str(s1) +'/' + str(len(s))
+        return str(s1) + '/' + str(len(s))
+
+    # CodeWar
+    # Find the divisors
+    def divisors(integer):
+        s1 = [i for i in range(1,integer) if integer%i==0]
+        if len(s1)==1 and 1 in s1:
+            return "{num} is prime".format(num=integer)
+        else:
+            return s1[1::]
