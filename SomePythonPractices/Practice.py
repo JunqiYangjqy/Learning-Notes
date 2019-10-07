@@ -865,3 +865,21 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
             return "{num} is prime".format(num=integer)
         else:
             return s1[1::]
+
+    # CodeWar
+    # Replace With Alphabet Position
+    import re
+    def alphabet_position(text):
+        numl = [i for i in range(1,27)]
+        characterl = [chr(i) for i in range(97,123)]
+        hashmap = dict(zip(characterl,numl))
+        text=re.sub('[^a-zA-Z]','',text)
+        text=text.lower()
+        res=[]
+        for i in text:
+            t=hashmap[i]
+            res.append(t)
+            #res.append(str(ord(i)-ord('a')+1))
+        tres = [ str(i) for i in res ]
+        stres = " ".join(tres)
+        return stres

@@ -244,4 +244,11 @@ UPDATE salary SET sex = CHAR(ASCII(sex) ^ ASCII('m') ^ ASCII('f') ); --same valu
 
 --------------------------------------------------------------------------------
 
+-- CodeWar
+-- Best selling books (5)
+SELECT b.name, b.author, b.copies_sold
+FROM books AS b
+GROUP BY b.name,b.author,b.copies_sold
+ORDER BY b.copies_sold DESC
+LIMIT 5
 
