@@ -111,7 +111,41 @@ class Solution:
                 value.append(value[i-1]+value[i-2])
             #value= Fibonacci(n-1)+Fibonacci(n-2)
             return value[n]
+    # Or
+    # the problem is, with the increase of max, the memory cost goes higher
+    def fab(max): 
+        n, a, b = 0, 0, 1 
+        L = [] 
+        while n < max: 
+            L.append(b) 
+            a, b = b, a + b 
+            n = n + 1 
+        return L
     
+    # Therefore, try to use iterable
+    class Fab(object): 
+        def __init__(self, max): 
+            self.max = max 
+            self.n, self.a, self.b = 0, 0, 1 
+        
+        def __iter__(self): 
+            return self 
+        
+        def next(self): 
+            if self.n < self.max: 
+                r = self.b 
+                self.a, self.b = self.b, self.a + self.b 
+                self.n = self.n + 1 
+                return r 
+            raise StopIteration()
+    # Using 'yield' 
+    def fab(max): 
+        n, a, b = 0, 0, 1 
+        while n < max: 
+            yield b # print b 
+            a, b = b, a + b 
+            n = n + 1 
+# --------------------------------------------------------------------    
     # LeetCode Two Sum
     #my stupid version
     def twoSum(self, nums: List[int], target: int) -> List[int]:
