@@ -926,3 +926,29 @@ URL：https://leetcode-cn.com/problems/merge-sorted-array/solution/hua-jie-suan-
         tres = [ str(i) for i in res ]
         stres = " ".join(tres)
         return stres
+    
+    # LeetCode
+    # Single Number
+    def singleNumber(self, nums: List[int]) -> int:
+        hashmap = {}
+        count = 1
+        for i in nums:
+            if i in hashmap.keys():
+                count = count + 1
+                hashmap[i] = count
+            else:
+                hashmap[i] = 1
+        for k,v in hashmap.items():
+            if v==1:
+                print(k)
+                return k
+    # A better way - pop up items
+    def betterSingleNumber(self, nums: List[int]) -> int:
+        hash_table = {}
+        for i in nums:
+            try:
+                hash_table.pop(i)
+            except:
+                hash_table[i] = 1
+        return hash_table.popitem()[0]
+    
